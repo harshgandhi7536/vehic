@@ -1,0 +1,15 @@
+
+ .firstbox {
+    background-color: rgb(144, 95, 103);
+    padding: 1rem; 
+}
+
+ label , input{
+    margin: 1rem
+}
+
+
+.secondbox{
+    background-color: rgb(144, 95, 103)
+    
+}
