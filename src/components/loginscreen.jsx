@@ -1,9 +1,12 @@
 import { useState } from "react";
 import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
-import {app} from "./firebase";
+import {app} from "../firebase";
+import { useNavigate } from 'react-router-dom';
+
 
 const auth=getAuth(app);
 const LoginPage=()=>{
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -35,7 +38,7 @@ const LoginPage=()=>{
         <input type="password" required onChange={handleOnPasswordChange} value={password} placeholder="Enter Your Password here"/>
         <br />
          <br />
-         <button onClick={signinUser}>Login</button>
+         <button onClick={()=> navigate("/menu")}>Login</button>
         </div>
     )
 }

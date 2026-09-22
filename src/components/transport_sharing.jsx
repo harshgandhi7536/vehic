@@ -1,9 +1,10 @@
 import react from 'react';
 import { useState } from 'react';
 import '../css_files/transportsharing.css'
+import {getFirestore, collection, addDoc} from 'firebase/firestore'
+import {app} from "../firebase";
 
-
-const TransportSharingPage=()=>{
+ const TransportSharingPage=()=>{
 
 const [from, setFromChange]=useState("");
 const [to, setToChange]=useState("");
@@ -27,6 +28,17 @@ const [time, setTime]=useState("");
         setTime(event.target.value);    
     }
 
+    const firestore= getFirestore(app);
+    const writeData =async () => {
+        const result = await addDoc(collection(firestore, 'vehicles'), {
+            from:from,
+            to:to,
+            date:date,
+            time:time
+        })
+    console.log("RESULT ", result);
+
+    }
 
     return (
     <div className="main">
@@ -56,16 +68,15 @@ const [time, setTime]=useState("");
         </div>
 
 
-        // --------- Second box --------------
+        {/* // --------- Second box -------------- */}
         <div className="secondbox">
-                    <label htmlFor="vehicle">Choose a vehicle</label>
-
-                            <div>
-
+                    <div>
                                 <label htmlFor="vehicle">Select Vehicle</label>
-                                <select>
+                                <select
                                 id="vehicle"
                                 value={selectedvehicle}
+                                onChange={(event)=>setSelectedVehicle(event.target.value)}
+                                >
                                 onclick={(event)=>setSelectedVehicle(event.target.value)}
                                 
                                     <option value="">--CHOOSE VEHICLE ---</option>
@@ -77,14 +88,14 @@ const [time, setTime]=useState("");
                                     <option value="Auto  Rickshaw">Auto  Rickshaw</option>
                                     <option value="Tata Truck">Tata Truck</option>     
                                     <option value="Carry">Carry</option>
-                                                                                                 <option value="Tata Intra">Tata Intra</option>
-                                </select>
+                                  </select>                                                               <option value="Tata Intra">Tata Intra</option>
+                                
                             </div>
         </div>
 
 
         <div className="thirdbox">
-
+            <button onClick={writeData}> SUBMIT</button> 
         </div>
     </div>
     )

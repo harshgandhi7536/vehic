@@ -1,6 +1,25 @@
+#root {
+  width: 100%;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
 
+body{
+    justify-content: center;
+    align-items: center;
+}
+
+.main{
+    margin: 10rem  32rem auto;
+        justify-content: center;
+        background-color: rgb(144, 95, 103);
+        width: 16rem;
+        height: 100%;
+        padding: 3rem;
+
+}
  .firstbox {
-    background-color: rgb(144, 95, 103);
     padding: 1rem; 
 }
 
